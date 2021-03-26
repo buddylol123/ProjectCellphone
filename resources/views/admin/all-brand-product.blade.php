@@ -7,11 +7,11 @@
     </div>
     <div class="row w3-res-tb">
     <?php
-    $message = Session::get('message');
+    $message = Session()->get('message');
 	if($message)
 	{
 		echo $message;
-		Session::put('message',null);
+		Session()->put('message',null);
   }
   ?>
       <div class="col-sm-5 m-b-xs">

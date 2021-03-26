@@ -18,7 +18,7 @@ Route::get('/trang-chu','HomeController@index');
 //back end 
 Route::get('/admin','Admincontroller@index');
 Route::get('/dash','Admincontroller@show_dashboard');
-Route::get('/admin-dashboard','Admincontroller@dash_board');
+Route::post('/admin-dashboard','Admincontroller@dash_board');
 Route::get('/detail-user-admin/{id}','Admincontroller@prof');
 
 //category
@@ -70,11 +70,8 @@ Route::get('dangxuat',[
     'as'=>'dangxuat',
     'uses'=>'Pagecontroller@getDangxuat'
 ]);
-Route::get('thongtin',[
-    'as'=>'thongtin',
-    'uses'=>'Pagecontroller@getThongtin'
+Route::get('/thongtin/{id}','Pagecontroller@getThongtin');
 
-]);
 
 Route::get('giohang',[
     'as'=>'giohang',

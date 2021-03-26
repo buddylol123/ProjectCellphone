@@ -38,11 +38,12 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<?php
-										$name = Session::get('tenkh');
+										$name = Session()->get('tenkh');
+										$id = Session()->get('makh');
 										if($name)
 							
 								?>
-								<li><a href="{{route('thongtin')}}"><i class="fa fa-user"></i><?php echo $name?></a></li>
+								<li><a href="{{URL::to('thongtin/'.$id)}}"><i class="fa fa-user"></i><?php echo $name?></a></li>
 								
 								<li><a href="{{route('giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
 								<li><a href="{{route('dangxuat')}}"><i class="fa fa-user"></i>Đăng Xuất</a></li>

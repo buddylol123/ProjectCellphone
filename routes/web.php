@@ -19,7 +19,9 @@ Route::get('/trang-chu','HomeController@index');
 //back end 
 Route::get('/admin','Admincontroller@index');
 Route::get('/dash','Admincontroller@show_dashboard');
-Route::post('/admin-dashboard','Admincontroller@dash_board');
+Route::get('/admin-dashboard','Admincontroller@dash_board');
+Route::get('/detail-user-admin/{id}','Admincontroller@prof');
+
 //category
 Route::get('/add-category-product','CategoryProduct@add_category_product');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category_product');
@@ -40,11 +42,11 @@ Route::post('/update-brand-product/{brand_product_id}','Brandcontroller@update_b
 
 //product
 Route::get('/add-product','Productcontroller@add_product');
-Route::get('/edit-product','Productcontroller@edit_product');
+Route::get('/edit-product/{product_id}','Productcontroller@edit_product');
 Route::get('/del-product/{product_id}','Productcontroller@del_product');
 Route::get('/all-product','Productcontroller@all_product');
 
-Route::get('/save-product','Productcontroller@save_product');
+Route::post('/save-product','Productcontroller@save_product');
 Route::get('/update-product/{product_id}','Productcontroller@update_product');
 
 

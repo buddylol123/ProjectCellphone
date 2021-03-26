@@ -3,16 +3,17 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Bang liet ket danh muc san pham
+      thong tin
     </div>
     <div class="row w3-res-tb">
     <?php
-    $message = Session::get('message');
+    $message = Session()->get('message');
 	if($message)
 	{
 		echo $message;
-		Session::put('message',null);
+		Session()->put('message',null);
   }
+  
   ?>
       <div class="col-sm-5 m-b-xs">
         <select class="input-sm form-control w-sm inline v-middle">
@@ -35,46 +36,42 @@
       </div>
     </div>
     <div class="table-responsive">
-      <table class="table table-striped b-t b-light">
-        <thead>
-          <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
-            <th>Ten sp</th>
-            <th> Gia</th>
-            <th>Hinh</th>
-            <th>Ma nha sx</th>
-            <th>Ma loai</th>
-            <th>Chuc nang</th>
-            
-            <th style="width:30px;"></th>
-          </tr>
-        </thead>
-        <tbody>
-        @foreach($all_product as $key =>$cate_pro)
-          <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{$cate_pro->mansx}}</td>
-          
-            <td><span class="text-ellipsis">{{$cate_pro->tensp}}</span></td>
-            <td><span class="text-ellipsis">{{$cate_pro->gia}}</span></td>
-            <td><span class="text-ellipsis">{{$cate_pro->hinh}}</span></td>
-            <td><span class="text-ellipsis">{{$cate_pro->mansx}}</span></td>
-            <td><span class="text-ellipsis">{{$cate_pro->maloai}}</span></td>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Account</th>
+      <th scope="col">Name</th>
 
-            <td>
-              <a href="{{URL::to('/edit-product/'.$cate_pro->masp)}}" class="active" ui-toggle-class="">
-              <i class="fa fa-pencil-square text-success text-active"></i></a>
-              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cate_pro->mansx)}}" class="active" ui-toggle-class="">
+      <th scope="col">Address</th></th>
+      <th scope="col">Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">			<?php
+	$name = Session()->get('admin');
 
-              <i class="fa fa-times text-danger text"></i></a>
-            </td>
-          </tr>
-        
-          @endforeach
+		echo $name;
+		
+	
+	?></th>
+      <td><?php	$tennv = Session()->get('tennv');
+      echo $tennv;
+      ?>
+</td>
+      <td>
+      <?php	$address = Session()->get('diachi');
+      echo $address;
+      ?>
+      </td>
+      <td><?php $phone = Session()->get('sodienthoai');
+
+      echo $phone
+       ?></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
          
          
         </tbody>

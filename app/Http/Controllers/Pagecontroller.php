@@ -65,6 +65,8 @@ class Pagecontroller extends Controller
             //Session()->put('password',$result->password);
             Session()->put('diachi',$result->diachi);
             Session()->put('makh',$result->makh);
+            Session()->put('sodienthoai',$result->sodienthoai);
+
             return Redirect::to('trang-chu');
         }
         else
@@ -78,11 +80,11 @@ class Pagecontroller extends Controller
         Session()->put('tenkh',null);
         return Redirect::to('trang-chu');
     }
-    public function getThongtin($id)
+    public function getThongtin($id_user)
     {
        
        
-        if($id)
+        if($id_user)
         {
             return view('pages.thongtin');
         }

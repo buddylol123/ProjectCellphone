@@ -70,7 +70,7 @@ Route::get('dangxuat',[
     'as'=>'dangxuat',
     'uses'=>'Pagecontroller@getDangxuat'
 ]);
-Route::get('/thongtin/{id}','Pagecontroller@getThongtin');
+Route::get('/thongtin/{id_user}','Pagecontroller@getThongtin');
 
 
 Route::get('giohang',[

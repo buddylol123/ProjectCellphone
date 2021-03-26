@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +45,45 @@ Route::get('/all-product','Productcontroller@all_product');
 
 Route::get('/save-product','Productcontroller@save_product');
 Route::get('/update-product/{product_id}','Productcontroller@update_product');
+
+
+Route::get('dangnhap',[
+    'as'=>'dangnhap',
+    'uses'=>'Pagecontroller@getDangnhap'
+]);
+Route::post('dangnhap',[
+    'as'=>'dangnhap',
+    'uses'=>'Pagecontroller@postDangnhap'
+]);
+
+Route::get('dangky',[
+    'as'=>'dangky',
+    'uses'=>'Pagecontroller@getDangky'
+]);
+Route::post('dangky',[
+    'as'=>'dangky',
+    'uses'=>'Pagecontroller@postDangky'
+]);
+Route::get('dangxuat',[
+    'as'=>'dangxuat',
+    'uses'=>'Pagecontroller@getDangxuat'
+]);
+Route::get('thongtin',[
+    'as'=>'thongtin',
+    'uses'=>'Pagecontroller@getThongtin'
+
+]);
+
+Route::get('giohang',[
+    'as'=>'giohang',
+    'uses'=>'Pagecontroller@getGiohang'
+
+]);
+
+
+
+
+
 
 
 

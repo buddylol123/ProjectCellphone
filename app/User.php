@@ -9,6 +9,13 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    
+    protected $primaryKey = "email"; // truyền để biết key chính là email vì trong auth.php nó định nghĩa id là key
+    protected $keyType = 'string';//để kiểu string mới đúng dạng chuỗi key
+    public $timestamps = false;
+    protected $table = "khachhang";
+
+   
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +25,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
+    protected $guarded=['*'];
+    
     /**
      * The attributes that should be hidden for arrays.
      *

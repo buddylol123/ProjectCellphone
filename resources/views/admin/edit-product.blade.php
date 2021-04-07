@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Them san pham
+                            Cap nhat san pham
                         </header>
                         <div class="panel-body">
                         <?php
@@ -23,26 +23,32 @@
                            
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Ten san pham</label>
-                                    <textarea type="Text" value="{{($edit_value->tensp)}}"  name="product_name" class="form-control" id="exampleInputPassword1" placeholder="Password"><echo ($edit_value->tensp);</echo>)></textarea>
+                                    <textarea type="Text" value="{{($edit_value->tensp)}}"  name="product_name" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->tensp);?></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Gia </label>
-                                    <textarea type="Text" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
+                                    <input type="Text" value="{{$edit_value->gia}}" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hinh san pham</label>
-                                    <input type="file" name="product_img" class="form-control" id="exampleInputPassword1" placeholder="Password"></input>
+                                    <input type="file" name="product_img" class="form-control" id="exampleInputPassword1" value="{{$edit_value->hinh}}" placeholder="Password"></input>
+                                    <img src="{{URL::to('public/upload/img_product/'.$edit_value->hinh)}}" height="200" width="200">
+
                                 </div>
                               
-                                @endforeach
+                            
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">loai san pham</label>
                                    <select name="product_maloai" class="form-control input-sm m-bot15">
-                                    @foreach($cate_product as $key => $catepro)
-                                   <option value="{{$cate_product->maloai}}">{{$catepro->tenloai}}</option>
+                                    @foreach($cate_product as $key => $cp)
+                                    @if($cp->maloai == $edit_value->maloai)
+                                   <option selected value="{{$cp->maloai}}">{{$cp->tenloai}}</option>
+                                   @else
+                                   <option  value="{{$cp->maloai}}">{{$cp->tenloai}}</option>
+                                  @endif
                                    @endforeach
                                    </select>
                                 </div>
@@ -50,15 +56,21 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword2">ma sx</label>
                                    <select name="product_mansx" class="form-control input-sm m-bot15">
+                                    @foreach($brand_product as $key=>$c)
+                                    @if($c->mansx == $edit_value->mansx)
 
-                                   @foreach($cate_brand as $key => $cate)
-                                   <option value="{{$cate_brand->mansx}}">{{($cate->tennsx    )}}</option>
+                                   <option selected value="{{$c->mansx}}">{{($c->tennsx)}}</option>
+                                   @else
+                                   <option selected value="{{$c->mansx}}">{{($c->tennsx)}}</option>
+
+                                    @endif
                                    @endforeach
                                    </select>
                                 </div>
                             
                                 <button type="submit" name="add-product" class="btn btn-info">Submit</button>
                             </form>
+                            @endforeach
                             </div>
 
                         </div>

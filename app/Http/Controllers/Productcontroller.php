@@ -57,25 +57,41 @@ class Productcontroller extends Controller
         $cate_product = DB::table('loaisp')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
 
-        $manager_product = view('admin.edit-product')->with('edit_product',$edit_product);
+        $manager_product = view('admin.edit-product')->with('edit_product',$edit_product)->with('cate_product',$cate_product)->with('brand_product',$cate_brand);
 
-        return view('admin_layout')->with('admin.edit-product',$manager_product)->with('admin.edit-product',$cate_product)->with('admin.edit-product',$cate_brand);
+        return view('admin_layout')->with('admin.edit-product',$manager_product);
         
     }
-    public function update_product($brand_product_id,Request $request)
+    public function update_product($product_id,Request $request)
     {
         $data = array();
-        $data['tennsx'] = $request->brand_product_name;
-        $data['xuatxu'] = $request->brand_product_sx;
+        $data['tensp'] = $request->product_name;
+        $data['gia'] = $request->product_price;
+        $data['hinh'] = $request->product_img;
+       
+        $data['mansx'] = $request->product_mansx;
+        $data['maloai'] = $request->product_maloai;
+        $get_img = $request->file('product_img');
+        if($get_img )
+        {   $get_name_img = $get_img->getClientOriginalExtension();
+            $name_img = current(explode('.',$get_name_img));
+            $new_img = $name_img.rand(0,99).'.'.$get_name_img;
+            $get_img->move('public/upload/img_product',$new_img);
+            $data['hinh'] = $new_img;
+            DB ::table('sanpham')->where('masp',$product_id)->update($data);
+            Session()->put('message','Sua san pham thanh cong');
+            return Redirect::to('all-product');
+        }
 
-        DB::table('nhasx') ->where('mansx',$brand_product_id)->update($data);
-        Session()->put('message','cap nhat ten thuong hieu thanh cong thanh cong');
+     
+        DB::table('sanpham')->where('masp',$product_id)->update($data);
+        Session()->put('message','cap nhat san pham thanh cong thanh cong');
         return Redirect::to('all-product');
 
     }
-    public function del_product($brand_product_id)
+    public function del_product($product_id)
     {    
-        DB::table('nhasx') ->where('mansx',$brand_product_id)->delete();
+        DB::table('sanpham') ->where('masp',$product_id)->delete();
         Session()->put('message','cap nhat danh muc thanh cong');
         return Redirect::to('all-product');
 

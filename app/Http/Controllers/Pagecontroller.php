@@ -9,7 +9,7 @@ use Auth;
 use Validator;
 use Session;
 use Hash;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Model\khachhang;
 session_start();
 class Pagecontroller extends Controller

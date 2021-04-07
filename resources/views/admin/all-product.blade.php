@@ -68,7 +68,7 @@
             <td>
               <a href="{{URL::to('/edit-product/'.$cate_pro->masp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
-              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cate_pro->mansx)}}" class="active" ui-toggle-class="">
+              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cate_pro->masp)}}" class="active" ui-toggle-class="">
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>

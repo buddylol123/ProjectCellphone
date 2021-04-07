@@ -96,4 +96,11 @@ class Pagecontroller extends Controller
     {
         return view('pages.giohang');   
     }
+    public function getTimkiem(Request $req)
+    {
+        $tukhoa=$req->tukhoa;
+        $sanpham = DB::table('sanpham')->where('tensp','like','%'.$req->tukhoa.'%')->orWhere('gia',$req->tukhoa)->get(); //orwhere = hoặc
+        
+        return view('pages.timkiem',compact('sanpham')); // trả các sản phẩm tìm được qua trang timkiem
+    }
 }

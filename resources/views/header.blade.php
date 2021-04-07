@@ -95,9 +95,13 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
-						</div>
+					<form action="{{route('timkiem')}}" method="get">
+                            
+							<div class="search_box pull-right">
+								<input type="text" name="tukhoa" placeholder="Tìm kiếm sản phẩm"/>
+								<input type="submit" style="margin-top:0;color:#666" name="search_items" class="btn btn-primary btn-sm" value="Tìm kiếm">
+							</div>
+							</form>
 					</div>
 				</div>
 			</div>

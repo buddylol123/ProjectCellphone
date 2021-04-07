@@ -8,7 +8,7 @@ use App\User;
 use Auth;
 use Validator;
 use Session;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Model\khachhang;
 session_start();
@@ -39,7 +39,7 @@ class Pagecontroller extends Controller
         $user =new user ();
         $user->tenkh =$req->fullname ;
         $user->email =$req->email;
-        $user->matkhau =bcsqrt($req->password);
+        $user->matkhau =Hash::make($req->password);
         $user->sodienthoai =$req->phone ;
         $user->diachi=$req->address ;
         $user->save();
@@ -54,26 +54,37 @@ class Pagecontroller extends Controller
     public function postDangnhap(Request $req)
     {  
         //dd($re->all());
+       // $this->validate($req,
+      // [
+      //     'email'=>'required|email',
+      //     'matkhau'=>'required|min:6|max:20'
+      // ],
+      //  [
+      //      'email.required'=>'Vui lòng nhập email',
+       //     'email.email'=>'Email không hợp lệ',
+      //      'matkhau.required'=>'Vui lòng nhập mật khẩu',
+       //     'matkhau.min'=>'Mật khẩu cần ít nhất 6 ký tự',
+       //     'matkhau.max'=>'Mật khẩu không quá 20 ký tự'
+      //  ]);
         $email = $req->email;
         $matkhau = $req->matkhau;
         $ten=$req->tenkh;
         $result = DB::table('khachhang')->where('email',$email)->where('matkhau',$matkhau)->first();//lay gioi han 1 user
         if($result) // check login chưa
         {   
-            Session()->put('email',$result->email);
-            Session()->put('tenkh',$result->tenkh);
-            //Session()->put('password',$result->password);
-            Session()->put('diachi',$result->diachi);
-            Session()->put('makh',$result->makh);
-            Session()->put('sodienthoai',$result->sodienthoai);
-
+            Session::put('email',$result->email);
+            Session::put('tenkh',$result->tenkh);
+            //Session::put('matkhau',$result->matkhau);
+            Session::put('makh',$result->makh);
             return Redirect::to('trang-chu');
         }
         else
-             Session()->put('message','mat khau or tai khoan sai ');
-             return Redirect::to('dangnhap');
+            // Session::put('message','mật khẩu hoặc tài khoản sai ');
+            return redirect()->back()->with('thongbao','Tài khoản hoặc mật khẩu sai');
+            // return Redirect::to('dangnhap');
 
     }
+    
     public function getDangxuat()
     {
         Session()->put('email',null);

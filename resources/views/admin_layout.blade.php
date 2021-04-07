@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <img alt="" src="images/2.png">
                 <span class="username">
 				<?php
-	$name = Session::get('tennv');
+	$name = Session()->get('manv');
 	if($name)
 	{
 		echo $name;
@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="{{URL::to("/detail-user-admin/".$name)}}"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
                 <li><a href="{{URL::to("/admin")}}"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>

@@ -38,11 +38,12 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<?php
-										$name = Session::get('tenkh');
+										$name = Session()->get('tenkh');
+										$id = Session()->get('makh');
 										if($name)
 							
 								?>
-								<li><a href="{{route('thongtin')}}"><i class="fa fa-user"></i><?php echo $name?></a></li>
+								<li><a href="{{URL::to('thongtin/'.$id)}}"><i class="fa fa-user"></i><?php echo $name?></a></li>
 								
 								<li><a href="{{route('giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
 								<li><a href="{{route('dangxuat')}}"><i class="fa fa-user"></i>Đăng Xuất</a></li>
@@ -94,9 +95,13 @@
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
-						</div>
+					<form action="{{route('timkiem')}}" method="get">
+                            
+							<div class="search_box pull-right">
+								<input type="text" name="tukhoa" placeholder="Tìm kiếm sản phẩm"/>
+								<input type="submit" style="margin-top:0;color:#666" name="search_items" class="btn btn-primary btn-sm" value="Tìm kiếm">
+							</div>
+							</form>
 					</div>
 				</div>
 			</div>

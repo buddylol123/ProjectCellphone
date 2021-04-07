@@ -9,7 +9,7 @@ use Auth;
 use Validator;
 use Session;
 use Hash;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Model\khachhang;
 session_start();
 class Pagecontroller extends Controller
@@ -60,35 +60,47 @@ class Pagecontroller extends Controller
         $result = DB::table('khachhang')->where('email',$email)->where('matkhau',$matkhau)->first();//lay gioi han 1 user
         if($result) // check login chưa
         {   
-            Session::put('email',$result->email);
-            Session::put('tenkh',$result->tenkh);
-            //Session::put('password',$result->password);
-            Session::put('makh',$result->makh);
+            Session()->put('email',$result->email);
+            Session()->put('tenkh',$result->tenkh);
+            //Session()->put('password',$result->password);
+            Session()->put('diachi',$result->diachi);
+            Session()->put('makh',$result->makh);
+            Session()->put('sodienthoai',$result->sodienthoai);
+
             return Redirect::to('trang-chu');
         }
         else
-             Session::put('message','mat khau or tai khoan sai ');
+             Session()->put('message','mat khau or tai khoan sai ');
              return Redirect::to('dangnhap');
 
     }
     public function getDangxuat()
     {
-        Session::put('email',null);
-        Session::put('tenkh',null);
+        Session()->put('email',null);
+        Session()->put('tenkh',null);
         return Redirect::to('trang-chu');
     }
-    public function getThongtin()
+    public function getThongtin($id_user)
     {
        
        
-        $new=DB::table('khachhang')->select('*');
-        $new=$new->get();
+        if($id_user)
+        {
+            return view('pages.thongtin');
+        }
        
      
-        return view('pages.thongtin',compact('new'));
+    
     }
     public function getGiohang()
     {
         return view('pages.giohang');   
+    }
+    public function getTimkiem(Request $req)
+    {
+        $tukhoa=$req->tukhoa;
+        $sanpham = DB::table('sanpham')->where('tensp','like','%'.$req->tukhoa.'%')->orWhere('gia',$req->tukhoa)->get(); //orwhere = hoặc
+        
+        return view('pages.timkiem',compact('sanpham')); // trả các sản phẩm tìm được qua trang timkiem
     }
 }

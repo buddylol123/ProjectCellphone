@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 <div class="features_items"><!--features_items-->
-                        <h2 class="title text-center">Kết quả {{count($sanpham)}} tìm kiếm</h2>
+                        <h2 class="title text-center"><!--Kết quả {{count($sanpham)}} tìm kiếm--></h2>
                        @foreach($sanpham as  $item)
                     
                         <div class="col-sm-4">

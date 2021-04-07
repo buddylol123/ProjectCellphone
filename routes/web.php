@@ -72,10 +72,13 @@ Route::get('dangxuat',[
 ]);
 Route::get('/thongtin/{id_user}','Pagecontroller@getThongtin');
 
+
 Route::get('timkiem',[
     'as'=>'timkiem',
     'uses'=>'Pagecontroller@getTimkiem'
 ]);
+
+
 
 Route::get('giohang',[
     'as'=>'giohang',

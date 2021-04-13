@@ -85,3 +85,21 @@ Route::get('/checkout','CheckoutController@checkout');
 Route::get('/payment','CheckoutController@payment');
 Route::post('/save-checkout','CheckoutController@save_checkout');
 Route::get('/details-product','DetailsProductController@details_product');
+
+Route::get('timkiem',[
+    'as'=>'timkiem',
+    'uses'=>'Pagecontroller@getTimkiem'
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+

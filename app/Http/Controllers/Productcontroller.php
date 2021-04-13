@@ -39,7 +39,7 @@ class Productcontroller extends Controller
         {   $get_name_img = $get_img->getClientOriginalExtension();
             $name_img = current(explode('.',$get_name_img));
             $new_img = $name_img.rand(0,99).'.'.$get_name_img;
-            $get_img->move('public/upload/img_product',$new_img);
+            $get_img->move('public/frontend/img',$new_img);
             $data['hinh'] = $new_img;
             DB ::table('sanpham')->insert($data);
             Session()->put('message','Them san pham thanh cong');
@@ -80,4 +80,22 @@ class Productcontroller extends Controller
         return Redirect::to('all-product');
 
     } 
+
+    //end admin page
+
+    public function chitiet_sanpham($masp){
+        $cate_product = DB::table('loaisp')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+
+        $all_chitiet = DB::table('sanpham')->join('loaisp', 'loaisp.maloai', '=', 'sanpham.maloai')->join('nhasx', 'nhasx.mansx', '=', 'sanpham.mansx')->where('sanpham.masp', $masp)->get();
+
+        foreach ($all_chitiet as $key => $value){
+            $maloai = $value->maloai;
+            
+        }
+
+        $all_lquan = DB::table('sanpham')->join('loaisp', 'loaisp.maloai', '=', 'sanpham.maloai')->join('nhasx', 'nhasx.mansx', '=', 'sanpham.mansx')->where('loaisp.maloai', $maloai)->whereNotIn('sanpham.masp',[$masp])->limit(3)->get();
+
+        return view('pages.sanpham.show_chitiet')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('all_chitiet',$all_chitiet)->with('all_lquan',$all_lquan);
+    }
 }

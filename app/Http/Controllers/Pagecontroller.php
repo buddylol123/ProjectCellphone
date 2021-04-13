@@ -17,8 +17,11 @@ class Pagecontroller extends Controller
     
     public function getDangky()
     {
-        return view('pages.dangky');
+        $cate_product = DB::table('loaisp')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        return view('pages.dangky')->with('cate_product',$cate_product)->with('brand_product',$cate_brand);
     }
+    
     public function postdangky(Request $req)
     {
     
@@ -36,7 +39,7 @@ class Pagecontroller extends Controller
                 'password.min'=>'Mật khẩu yêu cầu 6 ký tự trở lên',
                 'password.max'=>'Mật khẩu không quá 20 ký tự'
              ] );
-        $user =new user ();
+        $user = new user ();
         $user->tenkh =$req->fullname ;
         $user->email =$req->email;
         $user->matkhau =bcsqrt($req->password);
@@ -49,8 +52,11 @@ class Pagecontroller extends Controller
     
     public function getDangnhap()
     {
-        return view('pages.dangnhap');
+        $cate_product = DB::table('loaisp')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        return view('pages.dangnhap')->with('cate_product',$cate_product)->with('brand_product',$cate_brand);
     }
+
     public function postDangnhap(Request $req)
     {  
         //dd($re->all());
@@ -74,26 +80,27 @@ class Pagecontroller extends Controller
              return Redirect::to('dangnhap');
 
     }
+
     public function getDangxuat()
     {
         Session()->put('email',null);
         Session()->put('tenkh',null);
         return Redirect::to('trang-chu');
     }
+
     public function getThongtin($id_user)
-    {
-       
-       
+    {       
         if($id_user)
         {
             return view('pages.thongtin');
-        }
-       
-     
+        } 
     
     }
-    public function getGiohang()
-    {
-        return view('pages.giohang');   
-    }
+
+    // public function getGiohang()
+    // {
+    //     return view('pages.giohang');   
+    // }
+
+
 }

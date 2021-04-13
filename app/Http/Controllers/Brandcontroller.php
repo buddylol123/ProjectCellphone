@@ -55,4 +55,18 @@ class Brandcontroller extends Controller
         return Redirect::to('all-brand-product');
 
     } 
+
+    //end function admin page
+
+    public function show_nhasx_trangchu($mansx){
+        
+        $cate_product = DB::table('loaisp')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+
+        $all_nhasx = DB::table('sanpham')->join('nhasx', 'sanpham.mansx','=', 'nhasx.mansx')->where('sanpham.mansx', $mansx)->get();
+
+        $brand_name = DB::table('nhasx')->where('nhasx.mansx', $mansx)->limit(1)->get();
+
+        return view('pages.nhasanxuat.show_nhasx')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('all_nhasx',$all_nhasx)->with('brand_name',$brand_name);
+    }
 }

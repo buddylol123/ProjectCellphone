@@ -16,7 +16,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+    <link rel="shortcut icon" href="{{('public/frontend/images/ico/favicon.ico')}}">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{('public/frontend/img/apple-touch-icon-144-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{('public/frontend/img/apple-touch-icon-114-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{('public/frontend/img/apple-touch-icon-72-precomposed.png')}}">
@@ -26,8 +26,6 @@
 <body>
 	
 	@include('header')
-
-		@yield('content')
         
 	@include('footer')
     <script src="{{('public/frontend/js/jquery.js')}}"></script>
@@ -36,6 +34,6 @@
 	<script src="{{('public/frontend/js/price-range.js')}}"></script>
     <script src="{{('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{('public/frontend/js/main.js')}}"></script>
-    <script>
+    <script></script>
 </body>
 </html>

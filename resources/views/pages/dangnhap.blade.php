@@ -1,4 +1,4 @@
-@extends('master')
+@extends('welcome')
 @section('content')
 <section id="form"><!--form-->
 		<div class="container">

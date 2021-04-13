@@ -7,11 +7,11 @@
     </div>
     <div class="row w3-res-tb">
     <?php
-    $message = Session::get('message');
+    $message = Session()->get('message');
 	if($message)
 	{
 		echo $message;
-		Session::put('message',null);
+		Session()->put('message',null);
   }
   ?>
       <div class="col-sm-5 m-b-xs">
@@ -68,7 +68,7 @@
             <td>
               <a href="{{URL::to('/edit-product/'.$cate_pro->masp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
-              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cate_pro->mansx)}}" class="active" ui-toggle-class="">
+              <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cate_pro->masp)}}" class="active" ui-toggle-class="">
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>

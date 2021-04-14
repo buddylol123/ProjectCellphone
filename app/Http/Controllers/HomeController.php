@@ -30,9 +30,10 @@ class HomeController extends Controller
     	$cate_product = DB::table('loaisp')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
 
-        $search_product = DB::table('sanpham')->where('tensp', 'like', '%'.$request->keywords_submit.'%')->get();
-
-        return view('pages.sanpham.search')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
+        $tukhoa=$request->tukhoa;
+        $sanpham = DB::table('sanpham')->where('tensp','like','%'.$request->tukhoa.'%')->orWhere('gia',$request->tukhoa)->get(); //orwhere = hoặc
+        
+        return view('pages.timkiem',compact('sanpham'))->with('cate_product',$cate_product)->with('brand_product',$cate_brand); // trả các sản phẩm tìm được qua trang timkie->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
        
     }
 }

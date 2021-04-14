@@ -31,7 +31,7 @@
 			<form action="{{URL::to('/tim-kiem')}}" method="POST">
 				{{ csrf_field() }}
 			<div class="search_box pull-right" >
-				<input type="text" name="keywords_submit" placeholder="Tìm kiếm sản phẩm" />
+				<input type="text" name="tukhoa" placeholder="Tìm kiếm sản phẩm" />
 				<input type="submit" name="search_items" style="margin-top: 0; color:#000" class="btn btn-primary btn-sm" value="Tìm">
 			</div>
 			</form>

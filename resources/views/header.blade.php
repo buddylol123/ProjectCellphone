@@ -82,7 +82,7 @@
 						if($customer != NULL){
 					?>
 
-					<li><a href="{{URL::to('/trang-chu')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
+					<li><a href="{{route('dangxuat')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
 					
 					<?php
 						}else{

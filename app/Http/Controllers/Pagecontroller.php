@@ -42,7 +42,7 @@ class Pagecontroller extends Controller
         $user = new user ();
         $user->tenkh =$req->fullname ;
         $user->email =$req->email;
-        $user->matkhau =bcsqrt($req->password);
+        $user->matkhau =md5($req->password);
         $user->sodienthoai =$req->phone ;
         $user->diachi=$req->address ;
         $user->save();
@@ -84,6 +84,9 @@ class Pagecontroller extends Controller
     {
         Session()->put('email',null);
         Session()->put('makh',null);
+        Session()->put('tenkh',null);
+        Session()->put('sodienthoai',null);
+
 
         return Redirect::to('trang-chu');
     }
